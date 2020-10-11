@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   page=1;
   countStock;
-  numberOfStockPerPage=2;
+  numberOfStockPerPage=30;
   lastPage;
   socket;
 
