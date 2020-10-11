@@ -1,0 +1,38 @@
+.dashboardPage{
+    width: 90%;
+    margin:auto;
+  }
+  table {
+    width:100%;
+    }
+  th.mat-sort-header-sorted {
+      color: grey;
+  }
+  .mat-row:hover {
+    background-color:#F2F5F8;
+  }
+  .btn-right{
+    float:right;
+    margin-right: 5px;
+  }
+  .center{
+    margin: auto;
+  }
+  .noStock{
+    display: block;
+    width: 200px;
+    margin: auto;
+    font-size:1.7rem;
+  }
+  nav.paginationNav{
+    display: flex;
+    justify-content: space-between;
+    vertical-align: middle;
+ }
+ ul.pagination,.totalExpense{
+     margin:1rem;
+ }
+ ul li.disable{
+     pointer-events: none;
+     opacity: 0.6;
+ }

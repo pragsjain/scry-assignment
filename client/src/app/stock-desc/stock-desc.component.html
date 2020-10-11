@@ -1,0 +1,76 @@
+
+  <div *ngIf="noStockDetail" class="noStock">No Stock Found</div>
+  <div class="stock-desc-page">
+
+    <mat-card  class="create-form" [ngClass]="{'show':isForm ,'hide':!isForm }">
+      <form [formGroup]="createForm" >
+      <section class="mat-typography">      
+        <div class="flex-space-between">
+          <h3 *ngIf="!id">Create a new Stock</h3> 
+          <h3 *ngIf="id">Edit Stock</h3> 
+            <div>
+              <button mat-raised-button class="btn btn-secondary" routerLink="/dashboard">
+                <i class="material-icons">undo </i>Dashboard</button> &nbsp;
+              <!-- disable if form is pristine or invalid or if any file is not added or removed -->
+              <button type="submit" (click)="saveClicked()" 
+              [disabled]="(createForm.pristine) ||createForm.invalid " 
+              mat-raised-button class="btn btn-secondary" >
+              <i class="material-icons">backup </i> Save </button> 
+            </div>
+          </div>
+        </section>
+        <mat-divider></mat-divider>
+      <br>
+      <span *ngIf="!id&& stock?.created" class="created-class">
+        Created On :<i> {{stock?.created | date}}</i> &nbsp;
+      </span>
+      <span *ngIf="id==''" class="created-class">
+          Create On :<i> {{date| date}}</i> &nbsp;
+      </span>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="Open*" formControlName="open" #open>
+        </mat-form-field> 
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="Close" formControlName="close" #close>
+        </mat-form-field>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="High" formControlName="high" #high>
+        </mat-form-field>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="Low" formControlName="low" #low>
+        </mat-form-field> 
+         <br>
+          
+      </form>
+    </mat-card>
+  
+
+    <mat-card  class="stock-desc" [ngClass]="{'showBlock':!isForm ,'hide':isForm}">
+      <section class="mat-typography">
+        <div class="flex-space-between">
+          <h3 >Stock Desciption</h3> 
+          <div>
+            <button mat-raised-button class="btn btn-secondary" routerLink="/dashboard">
+              <i class="material-icons">undo </i>Dashboard</button> &nbsp;
+            <button mat-raised-button class="btn btn-secondary" (click)="isForm=true">
+                <i class="material-icons">edit </i> Edit
+            </button> 
+          </div>
+        </div>
+      </section>
+      <mat-divider></mat-divider>
+      <br>
+      <span class="created-class">Created On :<i> {{stock?.date | date:'short' }}</i> &nbsp;
+      </span>
+      <h4>Stock</h4>
+      <p>Open :<span class="descValue-class"> {{stock?.open}}</span></p>
+      <p>High : <span class="descValue-class"> {{stock?.high}}</span></p>
+      <p>Low :<span class="descValue-class"> {{stock?.low}}</span></p>
+      <p>Close : <span class="descValue-class"> {{stock?.close}}</span></p>
+     
+      <br>
+    </mat-card>
+
+</div> 
+
+ 

@@ -1,0 +1,98 @@
+
+
+    <div [hidden]="this.countStock!==0" class="noStock">
+        No Stock Found
+        <button type="button" class="btn btn-secondary center" (click)="create()">Create a Stock</button>
+    </div>
+      <div class="dashboardPage" [hidden]="this.countStock==0">
+        <br>
+        <mat-form-field >
+            <mat-label><span class="material-icons">search </span> </mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Done">
+        </mat-form-field>
+        <button type="button" class="btn btn-secondary btn-right" (click)="goToSearch()" [hidden]=!isDashBoardView>Search</button>
+        <button type="button" class="btn btn-secondary btn-right" (click)="goToDashboard()" [hidden]=isDashBoardView>Dashboard</button>
+        <button type="button" class="btn btn-secondary btn-right" (click)="create()">Create an Stock</button>
+    
+        <table mat-table [dataSource]="dataSource"  matSort >
+      
+          <!-- Status Column -->
+          <!-- <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container> -->
+      
+          <!-- Date Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.date|date:'short'}} </td>
+          </ng-container>
+      
+          <!-- Open Column -->
+          <ng-container matColumnDef="open">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Open </th>
+            <td mat-cell *matCellDef="let element"> {{element.open}} </td>
+          </ng-container>
+      
+          <!-- Low  Column -->
+          <!-- <ng-container matColumnDef="low">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Low </th>
+            <td mat-cell *matCellDef="let element"> {{element.low }} </td>
+          </ng-container> -->
+
+          <!-- Close Column -->
+          <ng-container matColumnDef="close">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Close </th>
+            <td mat-cell *matCellDef="let element"> {{element.close}} </td>
+          </ng-container>
+      
+          <!-- High Column -->
+          <!-- <ng-container matColumnDef="high">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> High </th>
+            <td mat-cell *matCellDef="let element"> {{element.high }} </td>
+          </ng-container> -->
+    
+          <!-- Delete Column -->
+          <ng-container matColumnDef="delete" >
+            <th mat-header-cell *matHeaderCellDef>Delete</th>
+            <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation();delete(element.id)">
+                <mat-label><span class="material-icons">close </span> </mat-label>
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="edit(row.id)"></tr>
+        </table>
+      
+        <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+         <!-- Pagination -->
+         <nav aria-label="Page navigation" class="paginationNav" *ngIf="lastPage!==1">
+          <b class="totalStock">Total Stock(s) : {{countStock}}</b>
+          <ul class="pagination">
+            <li class="page-item"  [ngClass]="{'disable': page==1}"
+            (click)="page=page-1; getAllStocks();">
+              <a class="page-link" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only" >Previous</span>
+              </a>
+            </li>
+            <li class="page-item" [ngClass]="{'active': page==1}"
+            (click)="page=1; getAllStocks();">
+                <a class="page-link">1</a></li>
+            <li class="page-item" *ngIf="lastPage!==2" [ngClass]="{'active': page>1 && page<lastPage}">
+                <a class="page-link">...</a></li>
+            <li class="page-item" [ngClass]="{'active': page==lastPage}"
+                (click)="page=lastPage; getAllStocks();">
+                <a class="page-link">{{lastPage}}</a></li>
+            <li class="page-item" [ngClass]="{'disable': page==lastPage}"
+            (click)="page=page+1; getAllStocks();">
+              <a class="page-link" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>                  
+          </ul>
+      </nav>
+       
+      </div>
+    

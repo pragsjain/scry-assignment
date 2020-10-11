@@ -1,0 +1,84 @@
+li{
+    list-style: none;
+  }
+  .stock-desc-page{
+      display: flex;
+      justify-content: space-between;
+      font-size:0.8rem;
+  }
+  .showFlex{
+    display: flex;
+  }
+  .hide{
+    display: none
+  }
+  .showBlock{
+    display: block;
+  }
+  .noStock{
+    display: block;
+    width: 200px;
+    margin: auto;
+    font-size:1.7rem;
+  }
+  .create-form,.stock-desc{
+    min-width: 150px;
+    width: 48%;
+    background: #F2F5F8;
+    min-height: 90vh;
+    height: 100%
+  }
+   @media only screen and (max-width: 650px) {
+    .stock-desc-page{
+      display: block;
+    }
+    .create-form,.stock-desc{
+      width: 100%;
+    } 
+   }
+  
+  /* for attachment list elements */
+  div ul {
+    padding-inline-start: 10px;
+    margin-bottom: 0px;
+    margin-top: 3px;
+  }
+  
+  .field-full-width{
+      width: 100%;
+  }
+ 
+    .material-icons.close-class {
+       position: relative;
+       bottom: -3px;
+    }
+    span.created-class{
+      color: #a8aab1;
+    }
+    span.descValue-class{
+      color: #a8aab1;
+      font-style: oblique
+    }
+    .btn i.material-icons{
+      font-size: 0.8rem;
+      position: relative;
+      top: 2px;
+    }
+    .send-btn {
+      right: 0px;
+      position: absolute;
+      bottom: 5px;
+    }
+    .flex-space-between{
+      display: flex;
+      justify-content: space-between;
+    }
+    @media only screen and (max-width: 850px) {
+    .flex-space-between{
+      display: block;
+    }
+  }
+  
+  
+    
+  

@@ -1,0 +1,12 @@
+.flex-class{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color:white;
+}
+.material-icons{
+    color: white;
+    position: relative;
+    top: 4px;
+    padding: 0px 10px;
+}
