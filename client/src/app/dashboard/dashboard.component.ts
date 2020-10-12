@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import * as io from 'socket.io-client';
 import { environment } from 'src/environments/environment';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,16 +34,18 @@ export class DashboardComponent implements OnInit {
       //socket connection
       this.setupSocketConnection({data:'user logged in ,socket established!'});
       this.socket = io(environment.SOCKET_ENDPOINT);
-      if(!this.appService.isCSVDateInserted)
+      if(!localStorage.isCSVDataInserted)
        this.insertCSVStocks();
       else{
+        debugger;
         this.getAllStocks()
       }
   }
 
   insertCSVStocks(){
     this.appService.insertCSVStocks().subscribe( (res) =>{
-      this.appService.isCSVDateInserted=true
+      debugger;
+      localStorage.isCSVDataInserted=true
       this.getAllStocks()
     },(error)=>{
       console.log('error',error);
