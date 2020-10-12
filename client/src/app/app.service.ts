@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class AppService {
   //private url =  'https://chatapi.edwisor.com';
   private url =  environment.SOCKET_ENDPOINT
-
+  isCSVDateInserted =false;
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
@@ -79,6 +79,9 @@ export class AppService {
   //     return this.handleError(error)
   //   }))
   // } 
+  insertCSVStocks(): Observable<any> {
+    return this.http.get(`${this.url}/api/v1/stocks/insert`);
+  } 
 
   getAllStocks(page,numberOfStockPerPage): Observable<any> {
     return this.http.get(`${this.url}/api/v1/stocks/all?page=${page}&numberOfStockPerPage=${numberOfStockPerPage}`)

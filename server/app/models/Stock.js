@@ -11,19 +11,19 @@ let stockSchema = new Schema(
             unique: true
         },
         open: {
-            type: String,
+            type: Number,
             default: ''
         },
         high: {
-            type: String,
+            type: Number,
             default: ''
         },
         low: {
-            type: String,
+            type: Number,
             default: ''
         },
         close: {
-            type: String,
+            type: Number,
             default: ''
         },
         date: {

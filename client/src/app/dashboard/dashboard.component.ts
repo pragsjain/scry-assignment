@@ -33,9 +33,22 @@ export class DashboardComponent implements OnInit {
       //socket connection
       this.setupSocketConnection({data:'user logged in ,socket established!'});
       this.socket = io(environment.SOCKET_ENDPOINT);
-      this.getAllStocks()
+      if(!this.appService.isCSVDateInserted)
+       this.insertCSVStocks();
+      else{
+        this.getAllStocks()
+      }
   }
 
+  insertCSVStocks(){
+    this.appService.insertCSVStocks().subscribe( (res) =>{
+      this.appService.isCSVDateInserted=true
+      this.getAllStocks()
+    },(error)=>{
+      console.log('error',error);
+    })
+
+  }
     
   setupSocketConnection(data) {
     //console.log(this.socket);

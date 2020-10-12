@@ -17,6 +17,8 @@ let setRouter = (app) => {
 
     app.post(baseUrl+'/create',stockController.createStock);
 
+    app.get(baseUrl+'/insert',stockController.insertManyStock);
+
 }// end setRouter function 
 
 module.exports = {

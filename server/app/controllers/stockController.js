@@ -3,6 +3,7 @@ const shortid = require('shortid');
 const time = require('./../libs/timeLib');
 const response = require('./../libs/responseLib')
 const logger = require('./../libs/loggerLib');
+const sensex_csv_data = require('./sensex_csv_data.json')
 
 //Importing the model here 
 const StockModel = mongoose.model('Stock')
@@ -185,10 +186,28 @@ let createStock = (req, res) => {
     }) // end new stock save
 }
 
+let insertManyStock= (req, res) => {
+    //let id = shortid.generate()
+    sensex_csv_data.forEach(element => {
+        element.id=shortid.generate()
+    });
+    StockModel.insertMany(sensex_csv_data,(err, result) => {
+        if (err) {
+            logger.error(err.message, 'stockController: createStock', 10)
+            let apiResponse = response.generate(true, 'Failed to insert csv Stock', 500, null)
+            res.send(apiResponse);
+        } else {
+            let apiResponse = response.generate(false, 'All Stock Inserted from csv', 200, result)
+            res.send(apiResponse)   
+        }        
+    }) // end new stock save
+}
+
 module.exports = {
     getAllStock: getAllStock,
     createStock: createStock,
     viewByStockId: viewByStockId,
     editStock: editStock,
-    deleteStock: deleteStock
+    deleteStock: deleteStock,
+    insertManyStock: insertManyStock
 }
