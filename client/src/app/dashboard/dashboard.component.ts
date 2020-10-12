@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  displayedColumns: string[] = ['date','open', 'close', 'delete'];
+  displayedColumns: string[] = ['date','open', 'close'];
   ELEMENT_DATA: StockElement[];
   dataSource: MatTableDataSource<StockElement>
   isDashBoardView=true;
